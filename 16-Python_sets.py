@@ -1,0 +1,42 @@
+#create the set
+# fruits={"apple","banana","mango","apple"}
+# print(fruits)
+
+#add items
+# fruits.add("chiku")
+# print(fruits)
+
+#remove items
+# fruits.discard("banana")
+# print(fruits)
+
+#set operation
+# a={1, 2, 3}
+# b={3, 4, 5}
+
+# print("union :", a|b)
+# print("intersection:", a&b)
+# print("difference:", a-b)
+# print("symmentics :",a^b)
+
+#remove duplicates
+# cities=["mumbai","pune","delhi","mumbai"]
+# unique = set(cities)
+# print("unique cities:",unique)
+
+# book=["hc varma","rd shrma","target","target"]
+# uniques=set(book)
+# print("unique citys:",uniques)
+
+#missing_value
+# list1={"sql","excel","power bi","python"}
+# list2={"excel","power bi","python"}
+
+# missing_value=list1-list2
+# print(missing_value)
+
+#common_skill
+
+# deptA={"SQL","Excel","Python"}
+# deptB={"Excel","python","powerBI"}
+# print("common skill:",deptA & deptB)
