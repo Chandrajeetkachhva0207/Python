@@ -1,0 +1,44 @@
+import csv
+
+#  Read entire CSV
+# with open(r"C:\Users\chand\Downloads\customer_data.csv") as file:
+#     reader=csv.reader(file)
+#     for row in reader:
+#         print(row)
+
+
+# skip header row
+
+# with open(r"C:\Users\chand\Downloads\customer_data.csv") as file:
+#     reader=csv.reader(file)
+#     next(reader)
+#     for row in reader:
+#        print(row)
+
+# Read as Dictionary
+
+# with open(r"C:\Users\chand\Downloads\customer_data.csv") as f:
+#     reader = csv.DictReader(f)
+
+#     for row in reader:
+#         print(row["customer_name"], "-", row["customer_city"])
+
+# Practical Data Analyst Tasks
+
+# total = 0
+# with open(r"C:\Users\chand\Downloads\customer_data.csv") as f:
+#  reader = csv.DictReader(f)
+
+#  for row in reader:
+#    total += int(row["customer_salary"])
+# print("Total Sales =", total)
+
+#Filter all Sales from Mumbai
+# sales_mumbai = []
+# with open("day21_sales_data.csv") as f:
+#  reader = csv.DictReader(f)
+
+#  for row in reader:
+#    if row["City"] == "Mumbai":
+#      sales_mumbai.append(row)
+# print(sales_mumbai)
