@@ -49,6 +49,43 @@ print("\n--output--")
 # print(high_salary.head())
 
 # 6.Sort Data
+#sort by Salary(Descending)
+# df_sorted_salary=df.sort_values("Salary",ascending=False)
+# print(df_sorted_salary.head())
 
+#sort by joining year(Ascending)
+# df_sorted_year=df.sort_values("Joining_Year")
+# print(df_sorted_year.head())
+
+# 7.Add New Columns
+
+#Salary Category
+# df["Salary_Category"]= df["Salary"].apply(
+#     lambda x: "High" if x>=6000 else "Medium" if x>=50000 else "Low"
+# )
+# print(df.head())
+
+# Experience(Years)
+# df["Experience"]=2025-df["Joining_Year"]
+# print(df.head())
+
+#8. Group By Operations
+
+#average Salary by department
+# avg_salary_dept = df.groupby("Department")["Salary"].mean()
+# print(avg_salary_dept)
+
+#average Salary by city
+# df["City"]=df["City"].str.title().str.strip()
+# avg_salary_city=df.groupby("City")["Salary"].sum()
+# print(avg_salary_city)
+
+#Employee Count By Departement
+# count_dept=df.groupby("Department")["Employee_ID"].count()
+# print(count_dept.head())
+
+#9.Export Cleaning Data -Sort by Salary(Descending)
+df_sorted_salary = df.sort_values("Salary", ascending=False)
+df_sorted_salary.to_csv("employee_sorted_by_salary.csv", index=False)
 
 
