@@ -1,0 +1,106 @@
+#29 – Graphical User Interface (GUI)-Based Automation Using AI with Python
+
+import tkinter as tk
+from tkinter import filedialog, messagebox
+import pandas as pd
+import os
+
+# ---------- Functions ----------
+
+def browse_input_file():
+    file_path = filedialog.askopenfilename(
+        filetypes=[("Excel files", "*.xlsx *.xls")]
+    )
+    input_path.set(file_path)
+
+def browse_output_folder():
+    folder_path = filedialog.askdirectory()
+    output_path.set(folder_path)
+
+def clean_data():
+    if not input_path.get() or not output_path.get():
+        messagebox.showerror("Error", "Please select input file and output folder")
+        return
+
+    try:
+        df = pd.read_excel(input_path.get())
+
+        # Remove duplicate rows
+        if remove_duplicates_var.get():
+            df = df.drop_duplicates()
+
+        # Remove blank rows
+        if remove_blank_rows_var.get():
+            df = df.dropna(how='all')
+
+        # Process only text columns
+        text_cols = df.select_dtypes(include=['object']).columns
+
+        # Trim spaces
+        if trim_spaces_var.get():
+            for col in text_cols:
+                df[col] = df[col].astype(str).str.strip()
+
+        # Convert to Title Case
+        if title_case_var.get():
+            for col in text_cols:
+                df[col] = df[col].astype(str).str.title()
+
+        # Save file
+        output_file = os.path.join(output_path.get(), "cleaned_data.xlsx")
+        df.to_excel(output_file, index=False)
+
+        messagebox.showinfo("Success", f"File saved at:\n{output_file}")
+
+    except Exception as e:
+        messagebox.showerror("Error", str(e))
+
+def reset_paths():
+    input_path.set("")
+    output_path.set("")
+
+def reset_checkboxes():
+    remove_duplicates_var.set(0)
+    remove_blank_rows_var.set(0)
+    trim_spaces_var.set(0)
+    title_case_var.set(0)
+
+# ---------- GUI Setup ----------
+
+root = tk.Tk()
+root.title("Data Cleaning Automation")
+root.geometry("500x400")
+
+input_path = tk.StringVar()
+output_path = tk.StringVar()
+
+# ---------- Input File ----------
+tk.Label(root, text="Select Input Excel File").pack(pady=5)
+tk.Entry(root, textvariable=input_path, width=50).pack()
+tk.Button(root, text="Browse File", command=browse_input_file).pack(pady=5)
+
+# ---------- Output Folder ----------
+tk.Label(root, text="Select Output Folder").pack(pady=5)
+tk.Entry(root, textvariable=output_path, width=50).pack()
+tk.Button(root, text="Browse Folder", command=browse_output_folder).pack(pady=5)
+
+# ---------- Checkboxes ----------
+tk.Label(root, text="Select Cleaning Options", font=("Arial", 12, "bold")).pack(pady=10)
+
+remove_duplicates_var = tk.IntVar()
+remove_blank_rows_var = tk.IntVar()
+trim_spaces_var = tk.IntVar()
+title_case_var = tk.IntVar()
+
+tk.Checkbutton(root, text="Remove Duplicate Rows", variable=remove_duplicates_var).pack(anchor='w', padx=50)
+tk.Checkbutton(root, text="Remove Blank Rows", variable=remove_blank_rows_var).pack(anchor='w', padx=50)
+tk.Checkbutton(root, text="Trim Spaces (Text Columns Only)", variable=trim_spaces_var).pack(anchor='w', padx=50)
+tk.Checkbutton(root, text="Convert to Title Case (Text Columns Only)", variable=title_case_var).pack(anchor='w', padx=50)
+
+# ---------- Buttons ----------
+tk.Button(root, text="Clean Data", bg="green", fg="white", command=clean_data).pack(pady=10)
+tk.Button(root, text="Reset Paths", command=reset_paths).pack(pady=5)
+tk.Button(root, text="Reset Checkboxes", command=reset_checkboxes).pack(pady=5)
+
+# ---------- Run ----------
+root.mainloop()
