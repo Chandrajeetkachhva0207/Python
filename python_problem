@@ -1,0 +1,148 @@
+# =========================
+# 1. HELLO WORLD
+# =========================
+print("Hello, World!")
+
+
+# =========================
+# 2. EVEN / ODD
+# =========================
+num = int(input("Enter number: "))
+if num % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+
+
+# =========================
+# 3. PRIME NUMBER
+# =========================
+num = int(input("Enter number: "))
+flag = True
+
+if num <= 1:
+    flag = False
+
+for i in range(2, int(num**0.5) + 1):
+    if num % i == 0:
+        flag = False
+        break
+
+print("Prime" if flag else "Not Prime")
+
+
+# =========================
+# 4. FACTORIAL
+# =========================
+num = int(input("Enter number: "))
+fact = 1
+
+for i in range(1, num + 1):
+    fact *= i
+
+print("Factorial:", fact)
+
+
+# =========================
+# 5. REVERSE STRING
+# =========================
+s = input("Enter string: ")
+print("Reverse:", s[::-1])
+
+
+# =========================
+# 6. PALINDROME
+# =========================
+s = input("Enter string: ")
+if s == s[::-1]:
+    print("Palindrome")
+else:
+    print("Not Palindrome")
+
+
+# =========================
+# 7. LARGEST NUMBER IN LIST
+# =========================
+arr = [10, 20, 5, 8]
+print("Max:", max(arr))
+
+
+# =========================
+# 8. REMOVE DUPLICATES
+# =========================
+arr = [1, 2, 2, 3, 4, 4]
+unique = list(set(arr))
+print("Unique:", unique)
+
+
+# =========================
+# 9. TWO POINTER (PAIR SUM)
+# =========================
+arr = [1, 2, 3, 4, 6]
+target = 6
+
+left, right = 0, len(arr) - 1
+
+while left < right:
+    s = arr[left] + arr[right]
+    if s == target:
+        print("Pair:", arr[left], arr[right])
+        break
+    elif s < target:
+        left += 1
+    else:
+        right -= 1
+
+
+# =========================
+# 10. BINARY SEARCH
+# =========================
+arr = [1, 2, 3, 4, 5, 6, 7]
+target = 5
+
+low, high = 0, len(arr) - 1
+
+while low <= high:
+    mid = (low + high) // 2
+    if arr[mid] == target:
+        print("Found at index:", mid)
+        break
+    elif arr[mid] < target:
+        low = mid + 1
+    else:
+        high = mid - 1
+
+
+# =========================
+# 11. NUMBER GUESSING GAME
+# =========================
+import random
+
+number = random.randint(1, 100)
+guess = 0
+
+while guess != number:
+    guess = int(input("Guess (1-100): "))
+    
+    if guess < number:
+        print("Too low!")
+    elif guess > number:
+        print("Too high!")
+    else:
+        print("Correct!")
+
+
+# =========================
+# 12. SIMPLE DATA ANALYTICS
+# =========================
+import pandas as pd
+
+data = {
+    "Name": ["A", "B", "C"],
+    "Marks": [80, 90, 75]
+}
+
+df = pd.DataFrame(data)
+
+print(df)
+print("Average:", df["Marks"].mean())
