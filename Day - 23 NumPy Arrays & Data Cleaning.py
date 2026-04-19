@@ -115,3 +115,4 @@ arr=np.array([10,20,30,40])
 # price=np.array([20,10,25,10])
 # total=Qual*price
 # print(total)
+
