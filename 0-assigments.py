@@ -10,6 +10,7 @@
 # print("Student education is",Student_eduction)
 # print("Student salary is",Student_salary)
 
+
 #String
 # customer_name="chandrajeet"
 # print("customer name is :",customer_name)
