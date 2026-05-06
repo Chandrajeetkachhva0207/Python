@@ -318,6 +318,7 @@
 # if age>=18 or residence.lower()=="yes":
 #     print("Eligible to register")
 # else:
+
 #     print("Not Eligible to register")
 
 
